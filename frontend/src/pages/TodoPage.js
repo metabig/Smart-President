@@ -26,7 +26,7 @@ class TodoPage extends Component {
         try {
             const response = await Axios({
                 method: 'GET',
-                url: `http://localhost:3000/api/todo`,
+                url: `https://smart-president.herokuapp.com/api/todo`,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -51,7 +51,7 @@ class TodoPage extends Component {
             try {
                 const response = await Axios({
                     method: 'POST',
-                    url: "http://localhost:3000/api/todo/add",
+                    url: "https://smart-president.herokuapp.com/api/todo/add",
                     data: {
                         task: this.state.newTask
                     },
@@ -79,7 +79,7 @@ class TodoPage extends Component {
             try {
                 const response = await Axios({
                     method: 'PATCH',
-                    url: `http://localhost:3000/api/todo/edit/${id}`,
+                    url: `https://smart-president.herokuapp.com/api/todo/edit/${id}`,
                     data: {
                         task: this.state.editableTask
                     },
@@ -112,9 +112,9 @@ class TodoPage extends Component {
 
     async handleDeleteTask(taskId) {
         try {
-            const response = await Axios({
+            await Axios({
                 method: 'DELETE',
-                url: `http://localhost:3000/api/todo/delete/${taskId}`,
+                url: `https://smart-president.herokuapp.com/api/todo/delete/${taskId}`,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -133,9 +133,9 @@ class TodoPage extends Component {
 
     async markAsDone(id, value) {
             try {
-                const response = await Axios({
+                await Axios({
                     method: 'PATCH',
-                    url: `http://localhost:3000/api/todo/markAsDone/${id}`,
+                    url: `https://smart-president.herokuapp.com/api/todo/markAsDone/${id}`,
                     data: {
                         done: value 
                     },

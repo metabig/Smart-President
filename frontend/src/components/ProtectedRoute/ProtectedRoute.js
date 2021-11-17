@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
 
 export default function ProtectedRoute(ComponentToProtect) {
     return class extends Component {
@@ -18,9 +15,9 @@ export default function ProtectedRoute(ComponentToProtect) {
         componentDidMount() {
             axios({
                 method: "GET",
-                url: 'http://localhost:3000/api/user/verify',
+                url: 'https://smart-president.herokuapp.com/api/user/verify',
                 headers: {
-                    "X-ACCESS-TOKEN": cookies.get('token')
+                    "X-ACCESS-TOKEN": localStorage.getItem('token')
                 }    
             })
                 .then(res => {
@@ -33,7 +30,7 @@ export default function ProtectedRoute(ComponentToProtect) {
                     }
                 })
                 .catch(err => {
-                    cookies.remove('token');
+                    localStorage.removeItem("token");;
                     this.setState({ loading: false, redirect: true });
                 });
         }

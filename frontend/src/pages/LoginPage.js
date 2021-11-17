@@ -6,11 +6,9 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Cookies from 'universal-cookie';
 
 import UserContext from "../contexts/User/UserContext";
 
-const cookies = new Cookies();
 
 class LoginPage extends Component {
     constructor(props) {
@@ -30,7 +28,7 @@ class LoginPage extends Component {
     }
 
     componentDidMount() {
-        if(cookies.get('token')) {
+        if(localStorage.getItem('token')) {
             this.setState({
                 redirect: true
             });

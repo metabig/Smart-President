@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import Cookies from 'universal-cookie';
 
 import UserContext from "./UserContext";
 
-const cookies = new Cookies();
 
 class UserProvider extends Component {
     constructor(props) {
@@ -18,12 +16,12 @@ class UserProvider extends Component {
     }
 
     componentDidMount() {
-        if (cookies.get('token') !== null) {
+        if (localStorage.getItem('token') !== null) {
             axios({
                 method: 'GET',
-                url: "http://localhost:3000/api/user/whoami",
+                url: "https://smart-president.herokuapp.com/api/user/whoami",
                 headers: {
-                    'X-ACCESS-TOKEN': cookies.get('token')
+                    'X-ACCESS-TOKEN': localStorage.getItem('token')
                 },
                 withCredentials: true
             })
@@ -53,7 +51,7 @@ class UserProvider extends Component {
                     handleLogin: data => {
                         axios({
                             method: 'POST',
-                            url: "http://localhost:3000/api/user/login",
+                            url: "https://smart-president.herokuapp.com/api/user/login",
                             data: data,
                             headers: {
                                 'Content-Type': 'application/json'
@@ -61,6 +59,7 @@ class UserProvider extends Component {
                             withCredentials: true
                         })
                             .then(response => {
+                                localStorage.setItem("token", response.data.token);
                                 if (response.status === 200) {
                                     this.setState({
                                         isLoggedIn: true
@@ -77,7 +76,7 @@ class UserProvider extends Component {
                             })
                     },
                     handleLogout: data => {
-                        cookies.remove('token');
+                        localStorage.removeItem("token");
                         this.props.history.push('/');
                     }
                 }}

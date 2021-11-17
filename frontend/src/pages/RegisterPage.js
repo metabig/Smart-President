@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from "react-router-dom"; 
+import { withRouter } from "react-router-dom"; 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Cookies from 'universal-cookie';
 import Axios from "axios";
 
-const cookies = new Cookies();
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -30,7 +28,7 @@ class RegisterPage extends Component {
     }
 
     componentDidMount() {
-        if(cookies.get('token')) {
+        if(localStorage.getItem('token')) {
             this.setState({
                 redirect: true
             });
@@ -49,7 +47,7 @@ class RegisterPage extends Component {
         try {
             const response = await Axios({
                 method: 'POST',
-                url: `http://localhost:3000/api/user/register/`,
+                url: `https://smart-president.herokuapp.com/api/user/register/`,
                 data: {
                     name: this.state.name,
                     password: this.state.password,

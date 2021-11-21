@@ -28,7 +28,8 @@ class TodoPage extends Component {
                 method: 'GET',
                 url: `https://smart-president.herokuapp.com/api/todo`,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "X-ACCESS-TOKEN": localStorage.getItem('token')
                 },
                 withCredentials: true
             });
@@ -56,7 +57,8 @@ class TodoPage extends Component {
                         task: this.state.newTask
                     },
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "X-ACCESS-TOKEN": localStorage.getItem('token')
                     },
                     withCredentials: true
                 });
@@ -84,7 +86,8 @@ class TodoPage extends Component {
                         task: this.state.editableTask
                     },
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "X-ACCESS-TOKEN": localStorage.getItem('token')
                     },
                     withCredentials: true
                 });
@@ -116,7 +119,8 @@ class TodoPage extends Component {
                 method: 'DELETE',
                 url: `https://smart-president.herokuapp.com/api/todo/delete/${taskId}`,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "X-ACCESS-TOKEN": localStorage.getItem('token')
                 },
                 withCredentials: true
             });
@@ -140,7 +144,8 @@ class TodoPage extends Component {
                         done: value 
                     },
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "X-ACCESS-TOKEN": localStorage.getItem('token')
                     },
                     withCredentials: true
                 });

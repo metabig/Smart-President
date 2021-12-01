@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import {Navbar, Nav, NavItem, Container, NavDropdown, Row, Col, Card, Button} from 'react-bootstrap';
 
 import UserProvider from "./contexts/User/UserProvider";
 import TodoPage from './pages/TodoPage';
@@ -9,7 +7,12 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 class App extends Component {
     constructor(props) {
@@ -20,19 +23,46 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-            <Router>
-                <UserProvider>
-                    <Switch>
-                        <Route exact path="/" render={() => <RegisterPage/>}></Route>
-                        <Route exact path="/register" render={() => <RegisterPage/>}></Route>
-                        <Route exact path="/dashboard" render={() => <TodoPage/>}></Route>
-                        <Route path="*" render={() => <NotFoundPage />}></Route>
-                    </Switch>
-                </UserProvider>
-            </Router>
+                <Router>
+                    <UserProvider>
+                        {/* <Switch>
+                        <Route path="/"><HomePage/></Route>
+                        <Route path="/register"> <RegisterPage/></Route>
+                        <Route path="/login"> <LoginPage/></Route>
+                        <Route path="/dashboard"><TodoPage/></Route>
+                        <Route path="*"><NotFoundPage /></Route>
+                    </Switch> */}
+                        <Switch>
+                            <Route path="/register">
+                                <RegisterPage />
+                            </Route>
+                            <Route path="/dashboard">
+                                <TodoPage />
+                            </Route>
+                            <Route path="/login">
+                                <LoginPage />
+                            </Route>
+                            <Route path="/">
+                                <HomePage />
+                            </Route>
+                        </Switch>
+                    </UserProvider>
+                </Router>
             </div>
         );
     }
+}
+
+function Home() {
+    return <h2>Home</h2>;
+}
+
+function About() {
+    return <h2>About</h2>;
+}
+
+function Users() {
+    return <h2>Users</h2>;
 }
 
 export default App;

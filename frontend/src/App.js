@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import NavComponent from './components/NavComponent';
 
 import {
     BrowserRouter as Router,
@@ -25,6 +26,7 @@ class App extends Component {
             <div className="app">
                 <Router>
                     <UserProvider>
+                        <NavComponent />
                         {/* <Switch>
                         <Route path="/"><HomePage/></Route>
                         <Route path="/register"> <RegisterPage/></Route>

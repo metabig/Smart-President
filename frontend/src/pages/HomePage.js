@@ -5,8 +5,8 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
-
+} from "react-router-dom";
+import NavComponent from './../components/NavComponent'
 import RegisterPage from './RegisterPage';
 import NotFoundPage from './NotFoundPage';
 import LoginPage from './LoginPage';
@@ -20,21 +20,7 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div className="bg">
-                <Navbar collapseOnSelect expand="lg" bg="none" variant="dark">
-                    <Container className="Container-Header">
-                        <Navbar.Brand className="NavBar-Title" style={{ color: 'black' }} href="/"><strong style={{ color: 'black' }}>Smart</strong >President<strong className="Strong1">.</strong></Navbar.Brand>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse className="responsive-navbar-nav">
-                            <Nav>
-                                <Nav.Link as={Link} to="/" className="nav-link">Home</Nav.Link>
-                                <Nav.Link as={Link} to="/register" className="nav-link">Register</Nav.Link>
-                                <Nav.Link as={Link} to="/login" className="nav-link">Login</Nav.Link>
-                                <Nav.Link as={Link} to="/contact" className="nav-link">Contact</Nav.Link>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
+            <Container className="page-container">
                 <h2 className="h2-1">
                     PORTA LA TEVA FINCA A LA SEGÜENT GENERACIÓ
                 </h2>
@@ -84,7 +70,7 @@ class HomePage extends Component {
                         </Col>
                     </Row>
                 </Container>
-            </div>
+            </Container>
         );
     }
 }

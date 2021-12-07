@@ -22,11 +22,6 @@ code {
     text-decoration: line-through;
 }
 
-.container-register{
-  background-color: #A8DADC;
-
-}
-
 .NavBar-Title{
   padding-left: 10%;
   padding-top: 2%;
@@ -53,8 +48,13 @@ code {
   color: white;
 }
 
+// background-image: url("https://comunidadessantagema.com/wp-content/uploads/2020/05/PORTADATERRAZASUNO-1024x768.jpg");
+
+.navbar-brand {
+  padding-top: 0 !important;
+}
+
 .bg {
-  background-image: url("https://comunidadessantagema.com/wp-content/uploads/2020/05/PORTADATERRAZASUNO-1024x768.jpg");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;

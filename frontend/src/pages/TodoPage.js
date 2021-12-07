@@ -17,24 +17,47 @@ class TodoPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: [],
-            newTask: ""
+            buildings: [],
+            newTask: "",
+            loading: true
         }
     }
 
     async componentDidMount() {
         try {
+            const whoami = await Axios({
+                method: 'GET',
+                url: `https://smart-president.herokuapp.com/api/user/whoami`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-ACCESS-TOKEN": localStorage.getItem('token')
+                },
+                withCredentials: true
+            })
+            console.log("Whoami: ")
+            console.log(whoami)
             const response = await Axios({
                 method: 'GET',
-                url: `https://smart-president.herokuapp.com/api/todo`,
+                url: `https://smart-president.herokuapp.com/api/buildings/`,
                 headers: {
                     'Content-Type': 'application/json',
                     "X-ACCESS-TOKEN": localStorage.getItem('token')
                 },
                 withCredentials: true
             });
+            //whoami.data.id -> user id
+            const buildings = response.data.filter(building => building.members.includes(whoami.data.id))
+            console.log(buildings)
             this.setState({
-                tasks: response.data
+                buildings: buildings,
+                user: whoami
+            })
+            console.log("State:")
+            console.log(this.state)
+            this.setState({
+                buildings: buildings,
+                user: whoami,
+                loading: false
             })
         } catch (e) {
             alert(e.message)
@@ -62,9 +85,9 @@ class TodoPage extends Component {
                     },
                     withCredentials: true
                 });
-                let task = [...this.state.tasks, response.data];
+                let task = [...this.state.buildings, response.data];
                 this.setState({
-                    tasks: task,
+                    buildings: task,
                     newTask: ""
                 });
             } catch (e) {
@@ -91,7 +114,7 @@ class TodoPage extends Component {
                     },
                     withCredentials: true
                 });
-                let task = this.state.tasks.map((task) => {
+                let task = this.state.buildings.map((task) => {
                     if (task._id === id) {
                         return {
                             ...response.data,
@@ -100,7 +123,7 @@ class TodoPage extends Component {
                     return task
                 })
                 this.setState({
-                    tasks: task,
+                    buildings: task,
                     newTask: "",
                     editable: "",
                     editableTask: ""
@@ -136,46 +159,46 @@ class TodoPage extends Component {
     }
 
     async markAsDone(id, value) {
-            try {
-                await Axios({
-                    method: 'PATCH',
-                    url: `https://smart-president.herokuapp.com/api/todo/markAsDone/${id}`,
-                    data: {
-                        done: value 
-                    },
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "X-ACCESS-TOKEN": localStorage.getItem('token')
-                    },
-                    withCredentials: true
-                });
-                const tasks = this.state.tasks.map((task) => {
-                    if (task._id === id) {
-                        return {
-                            ...task, 
-                            done: value
-                        }
+        try {
+            await Axios({
+                method: 'PATCH',
+                url: `https://smart-president.herokuapp.com/api/todo/markAsDone/${id}`,
+                data: {
+                    done: value
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-ACCESS-TOKEN": localStorage.getItem('token')
+                },
+                withCredentials: true
+            });
+            const tasks = this.state.tasks.map((task) => {
+                if (task._id === id) {
+                    return {
+                        ...task,
+                        done: value
                     }
-                    return task;
-                });
+                }
+                return task;
+            });
 
-                this.setState({
-                    ...this.state,
-                    tasks: tasks
-                });
-            } catch (e) {
-                alert(e.message);
-                return;
-            }
+            this.setState({
+                ...this.state,
+                tasks: tasks
+            });
+        } catch (e) {
+            alert(e.message);
+            return;
+        }
     }
 
     _viewTask = (task, _id, done) => {
         return (
             <>
                 <Col xs={2} className="todo-mark-as-done">
-                    <Form.Check type="checkbox" checked={done} name="markAsDone" onChange={(e) => {this.markAsDone(_id, e.target.checked)}}/>
+                    <Form.Check type="checkbox" checked={done} name="markAsDone" onChange={(e) => { this.markAsDone(_id, e.target.checked) }} />
                 </Col>
-                <Col className={done ? 'todo-done': ''} onDoubleClick={() => { this.setState({ editable: _id, editableTask: task }) }} xs={6}>
+                <Col className={done ? 'todo-done' : ''} onDoubleClick={() => { this.setState({ editable: _id, editableTask: task }) }} xs={6}>
                     {task}
                 </Col>
                 <Col xs={4}>
@@ -212,39 +235,39 @@ class TodoPage extends Component {
 
                                             </Col>
                                             <Col xs={8} className="p-0">
-                                                Welcome, {context.name}
+                                                Benvingut, {context.name}
                                             </Col>
                                             <Col xs={2} className="p-0">
                                                 <Button size="sm" variant="danger" onClick={() => context.handleLogout()}>Logout</Button>
                                             </Col>
                                         </Row></Card.Header>
                                     <Card.Body className="text-center px-5">
-                                        <p>What are you going to do today?</p>
+                                        <p>Aquestes son les teves comunitats de veïns:</p>
                                         <Form>
                                             <Row>
                                                 <Col className="mt-1 mb-1">
                                                     <Card className="p-3">
                                                         <Row>
                                                             <Col xs={8}>
-                                                                <Form.Control name="newTask" placeholder="Call Fransiska after meeting" onChange={(e) => this.handleChange(e)} value={this.state.newTask}></Form.Control>
+                                                                <Form.Control name="newTask" placeholder="Codi de la comunitat" onChange={(e) => this.handleChange(e)} value={this.state.newTask}></Form.Control>
                                                             </Col>
                                                             <Col xs={4}>
-                                                                <Button block onClick={() => this.handleAddTask()}>Add</Button>
+                                                                <Button block onClick={() => this.handleAddTask()}>Afegeix</Button>
                                                             </Col>
                                                         </Row>
                                                     </Card>
                                                 </Col>
-                                                {this.state.tasks.map(({ task, _id, done }, index) => {
-                                                    return (
-                                                        <Col xs={12} className="text-left mt-1 mb-1" key={_id}>
+                                                {this.state.loading ? <p>Loading...</p> :
+                                                    this.state.buildings.map(building => {
+                                                        return (<Col xs={12} className="text-left mt-1 mb-1" key={building._id}>
                                                             <Card className="p-3">
                                                                 <Row className="align-items-center justify-content-center">
-                                                                    {this.state.editable === _id ? this._editTask(task, _id) : this._viewTask(task, _id, done)}
+                                                                    {building.name}
                                                                 </Row>
                                                             </Card>
                                                         </Col>
-                                                    );
-                                                })}
+                                                        )
+                                                    })}
                                             </Row>
                                         </Form>
                                     </Card.Body>

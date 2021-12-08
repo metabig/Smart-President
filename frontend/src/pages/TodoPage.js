@@ -73,155 +73,33 @@ class TodoPage extends Component {
     }
 
     async handleAddTask() {
+        console.log("Afegeix")
+        console.log(this.state.newTask)
         if (this.state.newTask !== "" && this.state.newTask !== null && this.state.newTask !== undefined && this.state.newTask.length > 0) {
             try {
                 const response = await Axios({
-                    method: 'POST',
-                    url: "https://smart-president.herokuapp.com/api/todo/add",
-                    data: {
-                        task: this.state.newTask
-                    },
+                    method: 'GET',
+                    url: `https://smart-president.herokuapp.com/api/buildings/join/${this.state.newTask}`,
                     headers: {
                         'Content-Type': 'application/json',
                         "X-ACCESS-TOKEN": localStorage.getItem('token')
-                    },
-                    withCredentials: true
-                });
-                let task = [...this.state.buildings, response.data];
-                this.setState({
-                    buildings: task,
-                    newTask: ""
-                });
-            } catch (e) {
-                alert(e.message);
-                return;
-            }
-
-        }
-    }
-
-
-    async handleUpdateTask(id) {
-        if (this.state.editableTask !== "" && this.state.editableTask !== null && this.state.editableTask !== undefined && this.state.editableTask.length > 0) {
-            try {
-                const response = await Axios({
-                    method: 'PATCH',
-                    url: `https://smart-president.herokuapp.com/api/todo/edit/${id}`,
-                    data: {
-                        task: this.state.editableTask
-                    },
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "X-ACCESS-TOKEN": localStorage.getItem('token')
-                    },
-                    withCredentials: true
-                });
-                let task = this.state.buildings.map((task) => {
-                    if (task._id === id) {
-                        return {
-                            ...response.data,
-                        }
                     }
-                    return task
+                });
+                console.log(response)
+                let current = this.state.buildings
+                current.push(response.data)
+                this.setState({
+                    buildings: current
                 })
-                this.setState({
-                    buildings: task,
-                    newTask: "",
-                    editable: "",
-                    editableTask: ""
-                });
+
             } catch (e) {
-                alert(e.message);
+                alert("No hem trobat aquesta comunitat");
                 return;
             }
 
         }
     }
 
-    async handleDeleteTask(taskId) {
-        try {
-            await Axios({
-                method: 'DELETE',
-                url: `https://smart-president.herokuapp.com/api/todo/delete/${taskId}`,
-                headers: {
-                    'Content-Type': 'application/json',
-                    "X-ACCESS-TOKEN": localStorage.getItem('token')
-                },
-                withCredentials: true
-            });
-            let tasks = this.state.tasks.filter(({ _id }) => taskId !== _id);
-            this.setState({
-                tasks: tasks
-            });
-        } catch (e) {
-            alert(e.message);
-            return;
-        }
-
-    }
-
-    async markAsDone(id, value) {
-        try {
-            await Axios({
-                method: 'PATCH',
-                url: `https://smart-president.herokuapp.com/api/todo/markAsDone/${id}`,
-                data: {
-                    done: value
-                },
-                headers: {
-                    'Content-Type': 'application/json',
-                    "X-ACCESS-TOKEN": localStorage.getItem('token')
-                },
-                withCredentials: true
-            });
-            const tasks = this.state.tasks.map((task) => {
-                if (task._id === id) {
-                    return {
-                        ...task,
-                        done: value
-                    }
-                }
-                return task;
-            });
-
-            this.setState({
-                ...this.state,
-                tasks: tasks
-            });
-        } catch (e) {
-            alert(e.message);
-            return;
-        }
-    }
-
-    _viewTask = (task, _id, done) => {
-        return (
-            <>
-                <Col xs={2} className="todo-mark-as-done">
-                    <Form.Check type="checkbox" checked={done} name="markAsDone" onChange={(e) => { this.markAsDone(_id, e.target.checked) }} />
-                </Col>
-                <Col className={done ? 'todo-done' : ''} onDoubleClick={() => { this.setState({ editable: _id, editableTask: task }) }} xs={6}>
-                    {task}
-                </Col>
-                <Col xs={4}>
-                    <Button variant="danger" size="sm" block onClick={() => this.handleDeleteTask(_id)}>Delete</Button>
-                </Col>
-            </>
-        )
-    }
-
-    _editTask = (task, _id) => {
-        return (
-            <>
-                <Col onDoubleClick={() => { this.setState({ editable: _id }) }} xs={8}>
-                    <Form.Control name="editableTask" placeholder="Call Fransiska after meeting" onChange={(e) => this.handleChange(e)} value={this.state.editableTask}></Form.Control>
-                </Col>
-                <Col xs={4}>
-                    <Button variant="primary" size="sm" block onClick={() => this.handleUpdateTask(_id)}>Update</Button>
-                </Col>
-            </>
-        )
-    }
 
     render() {
         return (<>

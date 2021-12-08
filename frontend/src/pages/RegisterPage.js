@@ -104,19 +104,19 @@ class RegisterPage extends Component {
         errors["password"] = "Sisplau introdueix la contrasenya.";
       }
 
-      if (typeof input["password"] !== "undefined") {
+      // if (typeof input["password"] !== "undefined") {
           
-        var correctPass = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~?.,_-]).{6,}$");
-        if (!correctPass.test(input["password"])) {
-          isValid = false;
-          errors["password"] = "La contrasenya ha de contenir almenys \nuna majúscula, una minúscula, un nombre i un símbol.";
-        }
-      }
+      //   var correctPass = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~?.,_-]).{6,}$");
+      //   if (!correctPass.test(input["password"])) {
+      //     isValid = false;
+      //     errors["password"] = "La contrasenya ha de contenir almenys \nuna majúscula, una minúscula, un nombre i un símbol.";
+      //   }
+      // }
   
-      if (!input["passwordR"]) {
-        isValid = false;
-        errors["passwordR"] = "Sisplau repeteix la contrasenya.";
-      }
+      // if (!input["passwordR"]) {
+      //   isValid = false;
+      //   errors["passwordR"] = "Sisplau repeteix la contrasenya.";
+      // }
   
       if (typeof input["password"] !== "undefined" && typeof input["passwordR"] !== "undefined") {
           
@@ -136,7 +136,7 @@ class RegisterPage extends Component {
     async registerUser() {
 
       console.log(this.state);
-      /*
+      
         try {
             const response = await Axios({
                 method: 'POST',
@@ -160,7 +160,7 @@ class RegisterPage extends Component {
             alert(e.message);
             return;
         }
-      */  
+      
     }
 
     setValidated = (value) => {

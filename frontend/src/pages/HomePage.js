@@ -1,15 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Container, NavDropdown, Row, Col, Card, Button } from 'react-bootstrap';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import NavComponent from './../components/NavComponent'
-import RegisterPage from './RegisterPage';
-import NotFoundPage from './NotFoundPage';
-import LoginPage from './LoginPage';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 
 class HomePage extends Component {

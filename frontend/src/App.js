@@ -14,6 +14,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import BuildingPage from './pages/BuildingPage';
 
 class App extends Component {
     constructor(props) {
@@ -37,6 +38,9 @@ class App extends Component {
                         <Switch>
                             <Route path="/register">
                                 <RegisterPage />
+                            </Route>
+                            <Route path="/dashboard/:id">
+                                <BuildingPage />
                             </Route>
                             <Route path="/dashboard">
                                 <TodoPage />

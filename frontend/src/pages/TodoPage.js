@@ -6,7 +6,9 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { withRouter } from "react-router-dom";
 import Axios from "axios";
-
+import {
+    Link
+} from "react-router-dom";
 
 import UserContext from "../contexts/User/UserContext";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute"
@@ -261,9 +263,10 @@ class TodoPage extends Component {
                                                     this.state.buildings.map(building => {
                                                         return (<Col xs={12} className="text-left mt-1 mb-1" key={building._id}>
                                                             <Card className="p-3">
+                                                                <Link to={`/dashboard/${building._id}`}>
                                                                 <Row className="align-items-center justify-content-center">
                                                                     {building.name}
-                                                                </Row>
+                                                                </Row></Link>
                                                             </Card>
                                                         </Col>
                                                         )

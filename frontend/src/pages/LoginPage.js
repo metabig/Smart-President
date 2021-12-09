@@ -51,18 +51,18 @@ class LoginPage extends Component {
                         <Row className="full-height align-items-center justify-content-center">
                             <Col xs={12} sm={8} md={6} lg={4}>
                                 <Card>
-                                    <Card.Header className="text-center">Login</Card.Header>
+                                    <Card.Header className="text-center">Inici de sessió</Card.Header>
                                     <Card.Body>
                                         <Form>
-                                            <Form.Label>Username</Form.Label>
-                                            <Form.Control type="text" name="username" placeholder="Enter username" value={this.state.username} onChange={(e) => this.handleChange(e)}></Form.Control>
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control type="password" name="password" placeholder="Enter password" value={this.state.password} onChange={(e) => this.handleChange(e)}></Form.Control>
+                                            <Form.Label>Nom</Form.Label>
+                                            <Form.Control type="text" name="username" placeholder="Introdueix el nom" value={this.state.username} onChange={(e) => this.handleChange(e)}></Form.Control>
+                                            <Form.Label>Contrasenya</Form.Label>
+                                            <Form.Control type="password" name="password" placeholder="Introdueix la contrasenya" value={this.state.password} onChange={(e) => this.handleChange(e)}></Form.Control>
                                         </Form>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <Button block variant="primary" onClick={() => context.handleLogin(this.state)}>Login</Button>
-                                        <Button block variant="secondary" onClick={() => this.redirectToRegisterPage()}>Register</Button>
+                                        <Button block variant="outline-primary" onClick={() => context.handleLogin(this.state)}>Inicia sessió</Button>
+                                        <Button block variant="secondary" onClick={() => this.redirectToRegisterPage()}>No tens compte? Registrat </Button>
                                     </Card.Footer>
                                 </Card>
                             </Col>

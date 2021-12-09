@@ -25,7 +25,7 @@ class HomePage extends Component {
                                         La base de la nostra tecnologia, aquesta inovadora forma d'ús de l'encriptació i assegurar informació que el nostre producte sigui fiable.
                                     </Card.Text>
                                     <div className="center">
-                                        <Button className="button1" variant="primary">Read More</Button>
+                                        <Button className="button1" variant="primary">Llegir Més</Button>
                                     </div>
                                 </Card.Body>
                             </Card>
@@ -39,7 +39,7 @@ class HomePage extends Component {
                                         Fusionem la tecnologia de BlockChain amb els innovadors Smart Contracts.
                                     </Card.Text>
                                     <div className="center">
-                                        <Button className="button1" variant="primary">Read More</Button>
+                                        <Button className="button1" variant="primary">Llegir Més</Button>
                                     </div>
                                 </Card.Body>
                             </Card>
@@ -53,7 +53,7 @@ class HomePage extends Component {
                                         Aquests "acords digitals" fan possible que tot funcioni adeqüadament, guardant a la Blockchain unes condicions que al complir-se porten a terme una acció prèviament decidida.
                                     </Card.Text>
                                     <div className="center">
-                                        <Button className="button1" variant="primary">Read More</Button>
+                                        <Button className="button1" variant="primary">Llegir Més</Button>
                                     </div>
                                 </Card.Body>
                             </Card>

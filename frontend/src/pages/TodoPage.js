@@ -114,11 +114,11 @@ class TodoPage extends Component {
                                             <Col xs={2} className="p-0">
 
                                             </Col>
-                                            <Col xs={8} className="p-0">
+                                            <Col xs={7} className="p-0">
                                                 Benvingut, {context.name}
                                             </Col>
-                                            <Col xs={2} className="p-0">
-                                                <Button size="sm" variant="danger" onClick={() => context.handleLogout()}>Logout</Button>
+                                            <Col xs={3} className="p-0">
+                                                <Button size="sm" variant="danger" onClick={() => context.handleLogout()}>Tanca sessió</Button>
                                             </Col>
                                         </Row></Card.Header>
                                     <Card.Body className="text-center px-5">

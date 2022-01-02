@@ -18,6 +18,10 @@ code {
 	min-height: 100vh;
 }
 
+.full-width {
+	min-width: 100vw;
+}
+
 .todo-done {
     text-decoration: line-through;
 }
@@ -50,15 +54,23 @@ code {
 
 // background-image: url("https://comunidadessantagema.com/wp-content/uploads/2020/05/PORTADATERRAZASUNO-1024x768.jpg");
 
-.navbar-brand {
-  padding-top: 0 !important;
-}
-
-.bg {
+.homeBg {
+  background-image: url("https://www.comunidad.madrid/sites/default/files/styles/aspect_ratio_16_9_desktop/public/img/edificios/shutterstock_640784887.jpg?itok=krif3vIB&timestamp=1584472934");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.registerBg {
+  background-image: url("https://www.creativefabrica.com/wp-content/uploads/2020/01/30/Blue-Abstract-Gradient-Background-Graphics-1-1-580x387.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar-brand {
+  padding-top: 0 !important;
 }
 
 .h2-1 {
@@ -84,3 +96,4 @@ code {
 .center {
   padding-left: 27%;
 }
+

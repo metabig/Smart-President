@@ -172,8 +172,8 @@ class RegisterPage extends Component {
     render() {
 
         return (
-          <Container className="container-register">
-              <Row className="full-height align-items-center justify-content-center">
+          <Container  className="registerBg">
+              <Row className="full-height align-items-center" style={{display: 'flex', justifyContent: 'center'}}>
                   <Col xs={12} sm={8} md={6} lg={4}>
                       <Card className="register-card">
                         <Card.Header className="text-center">Registre</Card.Header>

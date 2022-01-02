@@ -65,6 +65,7 @@ class UserProvider extends Component {
                                         isLoggedIn: true
                                     }, () => {
                                         this.props.history.push('/dashboard');
+                                        window.location.reload(false);
                                     });
                                 } else {
                                     alert(response.data.message);

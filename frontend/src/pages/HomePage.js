@@ -10,7 +10,8 @@ class HomePage extends Component {
 
     render() {
         return (
-            <Container className="page-container">
+          <Row className='full-height homeBg'>
+            <Container>
                 <h2 className="h2-1">
                     PORTA LA TEVA FINCA A LA SEGÜENT GENERACIÓ
                 </h2>
@@ -61,6 +62,7 @@ class HomePage extends Component {
                     </Row>
                 </Container>
             </Container>
+          </Row>  
         );
     }
 }

@@ -1,13 +1,13 @@
-List of current undone features, cross when done.
+List of current undone features, tick when done.
 
 1. Set backgrounds in:
-    - Home page
+    - Home page ✔
     - Register
     - Login
     - Logged home page
     - Buildings page
 
-2. Autorefresh NavComponent after log-in, currently shows not-logged NavComponent if not reloaded
+2. Autorefresh NavComponent after log-in, currently shows not-logged NavComponent if not reloaded ✔
 
 3. Smart Contract creation
     - Create button in building page

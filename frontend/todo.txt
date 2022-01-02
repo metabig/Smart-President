@@ -1,0 +1,24 @@
+List of current undone features, cross when done.
+
+1. Set backgrounds in:
+    - Home page
+    - Register
+    - Login
+    - Logged home page
+    - Buildings page
+
+2. Autorefresh NavComponent after log-in, currently shows not-logged NavComponent if not reloaded
+
+3. Smart Contract creation
+    - Create button in building page
+    - Creation form
+   
+4. DB user model coherence with register page
+    - Remove username
+    - Add surname
+    - Add password
+   
+5. Login refactor
+    - Use email instead of name
+   
+6. Change React tab icon for SmartPresident logo/icon   

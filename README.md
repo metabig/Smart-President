@@ -29,5 +29,5 @@ npm start
 - Álvaro Borao Fortún
 - Antoni Bergas Galmés 
 - Alfons Caparrós Bazo 
-![Foto](foto.jpg)
+![Foto](./Foto.jpg)
 

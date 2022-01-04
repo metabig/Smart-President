@@ -28,6 +28,8 @@ npm start
 - Julen Galera Vitoria
 - Álvaro Borao Fortún
 - Antoni Bergas Galmés 
-- Alfons Caparrós Bazo 
-![Foto](foto.jpg)
+- Alfons Caparrós Bazo
+
+
+![Foto](./Foto.jpg)
 

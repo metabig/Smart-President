@@ -1,0 +1,65 @@
+###
+POST /api/user/login HTTP/1.1
+Host: smart-president.herokuapp.com
+Content-Type: application/json
+
+{
+    "username":"aa",
+    "password":"aa"
+}
+
+###
+GET /api/user/whoami HTTP/1.1
+Host: smart-president.herokuapp.com
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQ0MGMzMmUyMmU3MDAxNmVjM2ZkYiIsIm5hbWUiOiJhYSIsInVzZXJuYW1lIjoiYWEiLCJpYXQiOjE2Mzg4NzkxODIsImV4cCI6MTYzODk2NTU4Mn0.m9ZvpZ067WcSF0DQ6JtBxA7dqYFlxXNO6tvnGkwnlUs
+###
+
+GET /api/buildings/test HTTP/1.1
+Host: smart-president.herokuapp.com
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQwMjRiOWVmYmYxNDliMzY4NmE2NSIsIm5hbWUiOiJ0ZXN0aW5nIiwidXNlcm5hbWUiOiJ0ZXN0aW5nIiwiaWF0IjoxNjM4NzIxMDMyLCJleHAiOjE2Mzg4MDc0MzJ9.wiplOo0PyNnNvkTvJZpraGtH8IfCoEAztdQc64YlskA
+Content-Type: application/json
+
+
+###
+
+POST /api/buildings/create HTTP/1.1
+Host: smart-president.herokuapp.com
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQ0MGMzMmUyMmU3MDAxNmVjM2ZkYiIsIm5hbWUiOiJhYSIsInVzZXJuYW1lIjoiYWEiLCJpYXQiOjE2Mzg4NzkxODIsImV4cCI6MTYzODk2NTU4Mn0.m9ZvpZ067WcSF0DQ6JtBxA7dqYFlxXNO6tvnGkwnlUs
+Content-Type: application/json
+
+{
+    "name":"Building with aa"
+}
+###
+GET /api/buildings/join/61ab4ab46bd70b23850c395d HTTP/1.1
+Host: localhost:3000
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQ0MGMzMmUyMmU3MDAxNmVjM2ZkYiIsIm5hbWUiOiJhYSIsInVzZXJuYW1lIjoiYWEiLCJpYXQiOjE2Mzg2MTU3NjcsImV4cCI6MTYzODcwMjE2N30.Sh26Yd3C52xfpdeAvvdxzh8j0Pw6lsjBAbEL8s0dXxs
+Content-Type: application/json
+
+###
+GET /api/buildings/ HTTP/1.1
+Host: localhost:3000
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQwMjRiOWVmYmYxNDliMzY4NmE2NSIsIm5hbWUiOiJ0ZXN0aW5nIiwidXNlcm5hbWUiOiJ0ZXN0aW5nIiwiaWF0IjoxNjM4NzIwNDk4LCJleHAiOjE2Mzg4MDY4OTh9.c2MfJ8RErpiR2i7WhiQmruMW6hGQOPt6nqEzapQ1NVY
+Content-Type: application/json
+
+###
+POST /api/buildings/61af53c90b8cf5001630e7a7/create_contract HTTP/1.1
+Host: smart-president.herokuapp.com
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjEzYmYxMTlhYzZiMDAxNjZmZGM0ZCIsIm5hbWUiOiJUb25pIiwidXNlcm5hbWUiOiJUb25pIiwiaWF0IjoxNjM5MDA1MTg1LCJleHAiOjE2MzkwOTE1ODV9.8ggGqGP1cHIiuIZpjBke1CSX4y2o5TjapyA9Pwkggtw
+Content-Type: application/json
+
+{
+    "name": "Reparació ascensor"
+}
+###
+POST /api/buildings/vote/61aceb7c309f7e1b2a3bacbb HTTP/1.1
+Host: localhost:3000
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQ0MGMzMmUyMmU3MDAxNmVjM2ZkYiIsIm5hbWUiOiJhYSIsInVzZXJuYW1lIjoiYWEiLCJpYXQiOjE2Mzg3MjI1MTYsImV4cCI6MTYzODgwODkxNn0.hEEOtBfSYCVscWILnRntL5-YURyeIozZTqJDnso72eA
+Content-Type: application/json
+
+###
+GET /api/buildings/contracts HTTP/1.1
+Host: localhost:3000
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTQ0MGMzMmUyMmU3MDAxNmVjM2ZkYiIsIm5hbWUiOiJhYSIsInVzZXJuYW1lIjoiYWEiLCJpYXQiOjE2Mzg3MjI1MTYsImV4cCI6MTYzODgwODkxNn0.hEEOtBfSYCVscWILnRntL5-YURyeIozZTqJDnso72eA
+Content-Type: application/json

@@ -37,7 +37,7 @@ export default function BuildingPage() {
     const handleVote = (contractId) => {
         console.log("Enters")
         fetch(`https://smart-president.herokuapp.com/api/buildings/vote/${contractId}`, { method: "POST", headers: myHeaders })
-            .then(res => res.ok ? setVoted(true) : setShow(true))
+            .then(res => {res.ok ? setVoted(true) : setShow(true)})
     }
 
     return building ?

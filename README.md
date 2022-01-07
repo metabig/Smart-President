@@ -1,6 +1,6 @@
-# MERN with JWT
+# Projecte PAE
 
-A simple web stack using MongoDB, Express, React and Node. Using JWT for Authentication.
+MERN + JWT
 
 ## How to Run
 

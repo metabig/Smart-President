@@ -172,11 +172,11 @@ class RegisterPage extends Component {
     render() {
 
         return (
-          <Container  className="registerBg">
+          <div className="registerBg container-fluid">
               <Row className="full-height align-items-center" style={{display: 'flex', justifyContent: 'center'}}>
-                  <Col xs={12} sm={8} md={6} lg={4}>
+                  <Col xs={10} sm={6} md={4} lg={2}>
                       <Card className="register-card">
-                        <Card.Header className="text-center">Registre</Card.Header>
+                        <Card.Header className="text-center" style={{fontSize: '30px'}}>Registre</Card.Header>
                         <Card.Body>
                             <Form ref="registerForm" validated={this.state.validated}>
                               <Form.Label>Nom</Form.Label>
@@ -190,7 +190,7 @@ class RegisterPage extends Component {
                                   >
                                 </Form.Control>
                               <div className="text-danger">{this.state.errors.name}</div>  
-                              <Form.Label>Cognoms</Form.Label>
+                              <Form.Label style={{paddingTop: '10px'}}>Cognoms</Form.Label>
                               <Form.Control 
                                   type="text" 
                                   name="surnames" 
@@ -201,7 +201,7 @@ class RegisterPage extends Component {
                                   >
                                 </Form.Control>
                               <div className="text-danger">{this.state.errors.surnames}</div>  
-                              <Form.Label>Correu Electrònic</Form.Label>
+                              <Form.Label style={{paddingTop: '10px'}}>Correu Electrònic</Form.Label>
                               <Form.Control 
                                   type="text" 
                                   name="email" 
@@ -212,7 +212,7 @@ class RegisterPage extends Component {
                                   >
                                 </Form.Control>  
                               <div className="text-danger">{this.state.errors.email}</div>   
-                              <Form.Label>Contrasenya</Form.Label>
+                              <Form.Label style={{paddingTop: '10px'}}>Contrasenya</Form.Label>
                               <Form.Control 
                                   type="password" 
                                   name="password" 
@@ -223,7 +223,7 @@ class RegisterPage extends Component {
                                   >                          
                               </Form.Control>
                               <div className="text-danger">{this.state.errors.password}</div> 
-                              <Form.Label>Repeteix la Contrasenya</Form.Label>
+                              <Form.Label style={{paddingTop: '10px'}}>Repeteix la Contrasenya</Form.Label>
                               <Form.Control 
                                   type="password" 
                                   name="passwordR" 
@@ -242,7 +242,7 @@ class RegisterPage extends Component {
                       </Card>
                   </Col>
               </Row>
-          </Container> 
+          </div> 
         );
     }
 }

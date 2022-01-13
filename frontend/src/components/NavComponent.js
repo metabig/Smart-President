@@ -32,7 +32,7 @@ class NavComponent extends Component {
                 <Navbar.Collapse className="justify-content-end">
                     {
                     this.state.logged ? <Nav>
-                        <Nav.Link as={Link} to="/dashboard" className="nav-link">Pàgina Principal</Nav.Link>
+                        <Nav.Link as={Link} to="/dashboard" className="nav-link">Inici</Nav.Link>
                         <Nav.Link as={Link} to="/" className="nav-link" onClick={this.handleClick.bind(this)}>Tanca sessió</Nav.Link>
                     </Nav> 
                     : <Nav>

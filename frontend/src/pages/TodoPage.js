@@ -105,9 +105,9 @@ class TodoPage extends Component {
         return (<>
             <UserContext.Consumer>
                 {context => (
-                    <Container>
+                    <Container fluid className='dashboardBg'>
                         <Row className="full-height align-items-center justify-content-center">
-                            <Col xs={12} sm={8} md={6} lg={6}>
+                            <Col xs={10} sm={6} md={4} lg={4}>
                                 <Card>
                                     <Card.Header className="text-center">
                                         <Row className="align-items-center justify-content-center">

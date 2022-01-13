@@ -79,6 +79,7 @@ class UserProvider extends Component {
                     handleLogout: data => {
                         localStorage.removeItem("token");
                         this.props.history.push('/');
+                        window.location.reload(false);
                     }
                 }}
             >

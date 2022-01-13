@@ -7,6 +7,7 @@ import { Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Popup from '../components/Popup';
 import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 
 
 export default function BuildingPage() {
@@ -24,17 +25,31 @@ export default function BuildingPage() {
 
     const [datos, setDatos] = useState({
       title: '',
-      desc: ''
-  })
+      desc: '',
+      cost: ''
+    })
 
-    const handleInputChange = (event) => {
+    const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('');
+    const [cost, setCost] = useState(0);
 
-      setDatos({
-          //...datos,
-          [event.target.name] : event.target.value
-      })
-  }
 
+    const handleInputTitle = (event) => {
+      console.log(event.target.value)
+      setTitle(event.target.value)
+    }
+    const handleInputDesc = (event) => {
+      console.log(event.target.value)
+      setDesc(event.target.value)
+    }
+    const handleInputCost = (event) => {
+      console.log(event.target.value)
+      setCost(event.target.value)
+    }
+
+    const setDefaults = () => {
+      window.location.reload();
+    }
 
     const myHeaders = new Headers({
         'Content-Type': 'application/json',
@@ -64,68 +79,58 @@ export default function BuildingPage() {
             .then(res => {res.ok ? setVoted(true) : setShow(true)})
     }
 
-    // async registerUser() {
+    const postContract = () => {
+      console.log({
+        title: title,
+        description: desc,
+        cost: cost
+      })
+      fetch(`https://smart-president.herokuapp.com/api/buildings/${id}/create_contract`, { method: "POST", headers: myHeaders, body: JSON.stringify({
+        name: title,
+        description: desc,
+        cost: parseInt(cost)
+        })
+      })
+         .then(res => setDefaults())
+  }
 
-    //   console.log(this.state);
-      
-    //     try {
-    //         const response = await Axios({
-    //             method: 'POST',
-    //             url: `https://smart-president.herokuapp.com/api/user/register/`,
-    //             data: {
-    //                 name: this.state.name,
-    //                 password: this.state.password,
-    //                 username: this.state.surnames
-    //             },
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             withCredentials: true
-    //         });
-    //         if(response.status === 200) {
-    //             this.props.history.push('/');
-    //         } else {
-    //             alert('Something has gone wrong. Please contact admin or refresh and try again.')
-    //         }
-    //     } catch (e) {
-    //         alert(e.message);
-    //         return;
-    //     }
-      
-    // }
 
     return building ?
-        <Container>
-            <br /><br />
-            <h1>{building.name}</h1>
-            {contracts ?
-                contracts.map(c => {
-                    return (<Card style={{ width: '18rem' }} key={c._id}>
-                        <Card.Body>
-                            <Card.Title>{c.name}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">{c.created_at}</Card.Subtitle>
-                            <Card.Subtitle className="mb-2 text-muted">Vots: {c.votes.length}</Card.Subtitle>
-                            <Card.Text> 
-                                Contracte referent a la reparació de l'ascensor [Annex 1.5.1]  
-                            </Card.Text> 
-                            {/* TODO Get descripcion propuesta */}
-                            <Card.Link onClick={() => handleVote(c._id)}>Vota a Favor</Card.Link>
-                        </Card.Body>
-                    </Card>)
-                })
-                :
-                <p>Loading contracts...</p>
-            }
-            {show &&
-            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-                <Alert.Heading>Ja has votat a favor d'aquest contracte</Alert.Heading>
-            </Alert>}
-            {voted &&
-            <Alert variant="success" onClose={() => setVoted(false)} dismissible>
-                <Alert.Heading>Acabes de votar a favor</Alert.Heading>
-            </Alert>}
+        <div className="buildingBg container-fluid full-height">
+            <h1 className="h2-2">{building.name}</h1>
+            <Row style={{flex: '1', flexDirection: 'row', alignItems:'center', justifyContent: 'left', marginTop: '10px', paddingLeft: '600px'}}>
+              <Col xs={10} sm={6} md={4} lg={2}>
+                <br /><br />
+
+                {contracts ?
+                    contracts.map(c => {
+                        return (<Card style={{ width: '18rem'}} key={c._id}>
+                            <Card.Body>
+                                <Card.Title>{c.name}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">{c.created_at}</Card.Subtitle>
+                                <Card.Subtitle className="mb-2 text-muted">Vots: {c.votes.length} Cost estimat: {c.cost}€</Card.Subtitle>
+                                <Card.Text> 
+                                    {c.description} 
+                                </Card.Text> 
+                                <Card.Link onClick={() => handleVote(c._id)}>Vota a Favor</Card.Link>
+                            </Card.Body>
+                        </Card>)
+                    })
+                    :
+                    <p>Loading contracts...</p>
+                }
+                {show &&
+                <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                    <Alert.Heading>Ja has votat a favor d'aquest contracte</Alert.Heading>
+                </Alert>}
+                {voted &&
+                <Alert variant="success" onClose={() => setVoted(false)} dismissible>
+                    <Alert.Heading>Acabes de votar a favor</Alert.Heading>
+                </Alert>}
+              </Col>
+            </Row>
             <Row style={{flex: '1', flexDirection: 'row', alignItems:'center', justifyContent: 'center', marginTop: '5%'}}>
-                <Button style={{width: '200px'}} onClick={() => togglePopup()} block >Crea Proposta</Button>
+                <Button style={{width: '200px', borderWidth: 1, borderColor: '#000',}} onClick={() => togglePopup()} block >Crea Proposta</Button>
             </Row>
 
             {isOpen && <Popup
@@ -134,20 +139,28 @@ export default function BuildingPage() {
                   <FormLabel style={{fontSize:'25px'}}>Títol de la proposta</FormLabel>
                   <FormControl
                     type="text" 
-                    name="titol" 
-                    value={datos.title}
-                    onChange={handleInputChange}
+                    name="title" 
+                    value={title}
+                    onChange={handleInputTitle}
                     >
                     
                   </FormControl>
                   
                   <FormLabel style={{fontSize:'25px', paddingTop: '30px'}}>Descripció de la proposta</FormLabel>
-                  <FormControl 
-                    type="textarea"  //TODO textarea
-                    componentClass="textarea"
-                    name="name" 
-                    value={datos.desc}
-                    onChange={handleInputChange}
+                  <FormControl
+                    as="textarea"
+                    name="desc" 
+                    value={desc}
+                    onChange={handleInputDesc}
+                    >
+                    
+                  </FormControl>
+                  <FormLabel style={{fontSize:'25px', paddingTop: '30px'}}>Cost estimat</FormLabel>
+                  <FormControl
+                    type='text'
+                    name="cost" 
+                    value={cost}
+                    onChange={handleInputCost}
                     >
                     
                   </FormControl>
@@ -156,11 +169,11 @@ export default function BuildingPage() {
                   </Form.Group>
                 </Form>
                 <Row style={{flex: '1', flexDirection: 'row', alignItems:'center', justifyContent: 'center', marginTop: '5%'}}>
-                  <Button >Crea </Button>
+                  <Button onClick={() => postContract()}>Crea </Button>
                 </Row>
               </>}
               handleClose={togglePopup}
             />}
-        </Container>
+        </div>
         : <p>Loading...</p>;
 }

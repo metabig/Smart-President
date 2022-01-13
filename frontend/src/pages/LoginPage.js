@@ -54,8 +54,8 @@ class LoginPage extends Component {
                                     <Card.Header className="text-center" style={{fontSize: '30px'}}>Inici de sessió</Card.Header>
                                     <Card.Body>
                                         <Form>
-                                            <Form.Label>Nom</Form.Label>
-                                            <Form.Control type="text" name="username" placeholder="Introdueix el nom" value={this.state.username} onChange={(e) => this.handleChange(e)}></Form.Control>
+                                            <Form.Label>Correu Electrònic</Form.Label>
+                                            <Form.Control type="text" name="username" placeholder="Introdueix el correu electrònic" value={this.state.username} onChange={(e) => this.handleChange(e)}></Form.Control>
                                             <Form.Label style={{paddingTop: '10px'}}>Contrasenya</Form.Label>
                                             <Form.Control type="password" name="password" placeholder="Introdueix la contrasenya" value={this.state.password} onChange={(e) => this.handleChange(e)}></Form.Control>
                                         </Form>

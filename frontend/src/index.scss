@@ -76,6 +76,13 @@ code {
   background-size: cover;
 }
 
+.buildingBg {
+  background-image: url("https://media-exp1.licdn.com/dms/image/C4E1BAQGArm0OnVsQHg/company-background_10000/0/1552062441856?e=2159024400&v=beta&t=V7bQSx8L6HbuvsWGvJngyj-kKuMR4IXMKY1FhBVw3Vk");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 .navbar-brand {
   padding-top: 0 !important; 
@@ -88,6 +95,11 @@ code {
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 2px;
   font-size: 35px;
+}
+
+.h2-2 {
+  text-align: center;
+  padding-top: 60px;
 }
 
 .justify-content-md-center {

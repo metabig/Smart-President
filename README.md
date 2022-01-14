@@ -1,14 +1,9 @@
 # Projecte PAE
+Implementació i apropament de la tecnología blockchain per a la resolució
+de conflictes entre una comunitat. Consulteu el contracte estàndard 'community.sol'.
 
-MERN + JWT
+La api(backend) ja està online a https://smart-president.herokuapp.com
 
-## How to Run
-
-### Clone this repository
-```
-git clone https://github.com/dennypradipta/mern-with-jwt
-cd mern-with-jwt
-```
 
 ### Run the backend in Terminal
 ```
